@@ -1,0 +1,60 @@
+<!-- Products Section -->
+<div class="container mt-4">
+    <h2>Products</h2>
+  
+    <div class="mb-3">
+      <h3 *ngIf="!isEdit">Create New Product</h3>
+      <h3 *ngIf="isEdit">Edit Product</h3>
+      <form (ngSubmit)="isEdit ? updateProduct() : createProduct()">
+        <div class="mb-3">
+          <label for="productName" class="form-label">Product Name</label>
+          <input type="text" id="productName" class="form-control" [(ngModel)]="newProduct.productName" name="productName" required>
+        </div>
+        <div class="mb-3">
+          <label for="productDescription" class="form-label">Description</label>
+          <textarea id="productDescription" class="form-control" [(ngModel)]="newProduct.productDescription" name="productDescription" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="productPrice" class="form-label">Price</label>
+          <input type="number" id="productPrice" class="form-control" [(ngModel)]="newProduct.productPrice" name="productPrice" required>
+        </div>
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select id="category" class="form-select" [(ngModel)]="newProduct.category" name="category" required>
+            <option *ngFor="let category of categories" [ngValue]="category">{{ category.categoryName }}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">{{ isEdit ? 'Update' : 'Create' }}</button>
+      </form>
+    </div>
+  
+    <div class="mt-4">
+      <h3>Product List</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td>{{ product.productId }}</td>
+            <td>{{ product.productName }}</td>
+            <td>{{ product.productDescription }}</td>
+            <td>{{ product.productPrice | currency }}</td>
+            <td>{{ product.category?.categoryName }}</td>
+            <td>
+              <a [routerLink]="['/update-product', product.productId]" class="btn btn-warning btn-sm">Edit</a>
+              <button (click)="deleteProduct(product.productId)" class="btn btn-danger btn-sm">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

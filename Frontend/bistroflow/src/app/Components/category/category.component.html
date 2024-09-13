@@ -1,0 +1,38 @@
+
+<!-- Category Section -->
+<div class="container mt-4">
+    <h2>Categories</h2>
+  
+    <!-- Create/Edit Category Form -->
+    <form (ngSubmit)="isEdit ? updateCategory() : createCategory()">
+      <div class="mb-3">
+        <label for="categoryName" class="form-label">Category Name</label>
+        <input type="text" id="categoryName" class="form-control" [(ngModel)]="newCategory.categoryName" name="categoryName" required>
+      </div>
+      <button type="submit" class="btn btn-primary">{{ isEdit ? 'Update' : 'Create' }}</button>
+    </form>
+  
+    <!-- Category List Table -->
+    <table class="table table-bordered mt-4">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories"> 
+          <td>{{ category.id }}</td>
+          <td>{{ category.categoryName }}</td>
+          <td>
+          
+            <button (click)="navigateToUpdate(category.id)" class="btn btn-warning btn-sm">Edit</button> 
+            <button (click)="deleteCategory(category.id)" class="btn btn-danger">Delete</button>
+  
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

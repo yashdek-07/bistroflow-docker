@@ -1,0 +1,11 @@
+FROM ubuntu
+RUN apt update -y
+RUN apt install apache2 -y
+RUN apt install npm -y && npm install -g @angular/cli
+WORKDIR /frontend
+COPY Frontend/bistroflow/ .
+RUN npm install --legacy-peer-deps
+RUN ng build
+RUN cp -pr dist/bistroflow/browser/* /var/www/html/
+EXPOSE 80
+CMD ["apache2ctl", "-D", "FOREGROUND"]

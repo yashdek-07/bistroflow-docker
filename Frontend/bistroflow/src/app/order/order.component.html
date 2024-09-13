@@ -1,0 +1,70 @@
+<div class="container mt-5">
+  <h2>Manage Order</h2>
+  <form (ngSubmit)="submitOrder()">
+    <div class="row mb-3">
+      <div class="col">
+        <label for="customerName" class="form-label">Name *</label>
+        <input type="text" class="form-control" id="customerName" [(ngModel)]="customerName" name="customerName" required>
+      </div>
+      <div class="col">
+        <label for="customerEmail" class="form-label">Email *</label>
+        <input type="email" class="form-control" id="customerEmail" [(ngModel)]="customerEmail" name="customerEmail" required>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="productCategory" class="form-label">Category</label>
+        <select class="form-select" id="productCategory" [(ngModel)]="productCategory" name="productCategory" (change)="onCategoryChange()">
+          <option selected disabled>Choose...</option>
+          <option *ngFor="let category of categories" [value]="category.id">{{ category.categoryName }}</option>
+        </select>
+      </div>
+      <div class="col">
+        <label for="productName" class="form-label">Product</label>
+        <select class="form-select" id="productName" [(ngModel)]="productName" name="productName" (change)="onProductChange()">
+          <option selected disabled>Choose...</option>
+          <option *ngFor="let product of products" [value]="product.productName">{{ product.productName }}</option>
+        </select>
+        
+      </div>
+      <div class="col">
+        <label for="quantity" class="form-label">Quantity *</label>
+        <input type="number" class="form-control" id="quantity" [(ngModel)]="quantity" name="quantity" min="1" required>
+      </div>
+      <div class="col">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" class="form-control" id="price" [(ngModel)]="price" name="price" readonly>
+      </div>
+    </div>
+    <div class="mt-4">
+      <h4>Total Amount: <span id="totalAmount">{{ totalAmount }}</span></h4>
+    </div>
+    <div class="button-container">
+      <button type="button" class="btn btn-primary" (click)="addItem()">Add</button>
+      <button type="submit" class="btn btn-success">Submit & Get Bill</button>
+    </div>
+  </form>
+  <div class="mt-4">
+    <h4>Order Summary</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of orderItems; let i = index">
+          <td>{{ item.product }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.total }}</td>
+          <td><button type="button" class="btn btn-danger btn-sm" (click)="removeItem(i)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

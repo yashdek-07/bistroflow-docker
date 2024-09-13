@@ -1,0 +1,10 @@
+<div *ngIf="isLoading">Loading...</div>
+<div *ngIf="!isLoading">
+  <div style="display: block;">
+    <canvas baseChart
+            [data]="chartData"
+            [options]="chartOptions"
+            [type]="'bar'">
+    </canvas>
+  </div>
+</div>

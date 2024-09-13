@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Frontend/bistroflow/angular.df
+    container_name: frontend
+    ports:
+    - "80:80"
+    depends_on:
+    - springboot
+    - db
+  springboot:
+    build:
+      context: .
+      dockerfile: Backend/bistroflow/springboot.df
+    container_name: springboot
+    ports:
+    - "5001:5001"
+    environment:
+    - username=postgres
+    - password=Postgres@123
+    - dbservername=db
+    - dbname=CafeBistro
+ 
+  db:
+    build:
+      context: .
+      dockerfile: Backend/bistroflow/postgres.df
+    container_name: backend
+    ports:
+    - "5432:5432"
+    environment:
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=Postgres@123
+    - dbname=CafeBistro
