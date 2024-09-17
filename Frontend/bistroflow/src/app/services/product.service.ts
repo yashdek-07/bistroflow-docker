@@ -8,7 +8,7 @@ import { Product } from '../Models/product';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = `http://${window.location.host}:5001/api/v1/product`;
+  private apiUrl = `http://15.168.206.200:5001/api/v1/product`;
 
   constructor(private http: HttpClient) { }
 

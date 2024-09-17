@@ -7,7 +7,7 @@ import { OrderDetails } from '../orderDetails';
   providedIn: 'root'
 })
 export class OrderService {
-  private baseUrl = `http://${window.location.host}:5001/api/v1/orders`;
+  private baseUrl = `http://15.168.206.200:5001/api/v1/orders`;
 
   constructor(private http: HttpClient) {}
 

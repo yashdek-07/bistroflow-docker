@@ -7,8 +7,8 @@ import { environment } from '../environments/environment';
 // const SIGN_UP_API_URL = 'http://localhost:8080/api/v1/user/signup';
 // const LOG_IN_API_URL = 'http://localhost:8080/api/v1/user/login';
 
-const SIGN_UP_API_URL = `http://${window.location.host}:5001/api/v1/user/signup`;
-const LOG_IN_API_URL = `http://${window.location.host}:5001/api/v1/user/login`;
+const SIGN_UP_API_URL = `http://15.168.206.200:5001/api/v1/user/signup`;
+const LOG_IN_API_URL = `http://15.168.206.200:5001/api/v1/user/login`;
 
 @Injectable({
   providedIn: 'root'

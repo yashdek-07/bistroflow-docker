@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 })
 export class ServicesService {
 
-  private baseURL = `http://${window.location.host}:5001/api/v1/analytics`;
+  private baseURL = `http://15.168.206.200:5001/api/v1/analytics`;
 
   constructor(private httpClient: HttpClient) { }
 
